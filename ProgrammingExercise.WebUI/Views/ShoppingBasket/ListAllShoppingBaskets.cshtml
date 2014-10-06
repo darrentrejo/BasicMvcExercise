@@ -1,0 +1,29 @@
+﻿@model ProgrammingExercise.WebUI.Models.ShoppingBasketOutputViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List All Shopping Baskets</title>
+</head>
+<body>
+    <div>
+            @foreach (var shoppingBasket in Model.ShoppingBaskets)
+            {
+                <p>Input @shoppingBasket.ShoppingBasketID:</p>
+                <ul>
+                    @foreach (var lineItem in shoppingBasket.LineItems)
+                    {
+                        <li>@lineItem.Quantity @lineItem.Name at @lineItem.Price.ToString("c")</li>
+                    }
+                </ul>
+            }
+        </div>
+        @Html.ActionLink("Calculate Totals", "OutputTotals")
+</body>
+</html>

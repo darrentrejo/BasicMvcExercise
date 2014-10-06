@@ -1,0 +1,31 @@
+﻿@model ProgrammingExercise.WebUI.Models.ShoppingBasketOutputViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Output Totals</title>
+</head>
+<body>
+    <div>
+         @foreach (var shoppingBasket in Model.ShoppingBaskets)
+            {
+                <p>Input @shoppingBasket.ShoppingBasketID</p>
+                <ul>
+                    @foreach (var lineItem in shoppingBasket.LineItems)
+                    {
+                        <li>@lineItem.Quantity @lineItem.Name: @(((lineItem.Quantity * lineItem.Price) + lineItem.calculateTaxes()).ToString("c"))</li>
+                    }
+                    <li>Sales Taxes: @shoppingBasket.SalesTaxes.ToString("c")</li>
+                    <li>Total: @shoppingBasket.calculateGrandTotal().ToString("c")</li>
+                </ul>
+            }
+    </div>
+</body>
+</html>
+
